@@ -1,0 +1,17 @@
+{
+  "Laminar": {
+    "tone": "LÓGICA, CLAREZA E OBJETIVIDADE",
+    "simplify": false,
+    "template": "{{base_response}}"
+  },
+  "Transição": {
+    "tone": "VALIDAR SENTIMENTO E EQUILIBRADO",
+    "simplify": false,
+    "template": "Compreendo seu ponto. {{base_response}}"
+  },
+  "Turbulento": {
+    "tone": "EMPATIA PROFUNDA E CALMA",
+    "simplify": true,
+    "template": "Entendo que está sendo desafiador. Vamos tentar uma abordagem mais simples: {{base_response}}"
+  }
+}
