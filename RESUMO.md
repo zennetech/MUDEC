@@ -109,30 +109,6 @@ Se:
 
 ---
 
-## 💻 Código Python (Simples e Didático)
-
-```python
-import numpy as np
-
-# Estado inicial
-u = np.array([-1, 0.8, 5])
-dt = 0.1
-P = 0.6
-
-def F(u, P):
-    return np.array([-0.1 * u[0], 0.5 * P - u[1], -0.2 * u[2]])
-
-# Atualização do estado
-u_new = u + F(u, P) * dt
-print("Novo estado:", u_new)
-
-# Cálculo da magnitude
-magnitude = np.linalg.norm(u_new)
-
-# Cálculo de Re_e
-Lc, nu_e = 2, 1
-Re_e = (magnitude * Lc) / nu_e
-print("Re_e:", Re_e)
 
 ## 🌐 MDEI em Ação: Onde a Teoria Encontra a Realidade
 
