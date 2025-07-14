@@ -13,23 +13,38 @@ dados de entrada como texto, voz ou EEG.
 
 Como Aplicar
 Para usar o MDEI, siga estes passos simples:
+
+
 	•	Instale as dependências: Use pip install numpy scipy jinja2 para preparar o ambiente.
+ 
 	•	Crie os arquivos: Copie os códigos fornecidos para mdei_state.py, mdei_dynamics.py, mdei_response.py, emotion_logger.py, prompt_template.json e main.py no seu repositório.
+ 
 	•	Inicialize o estado: Defina um vetor inicial, como [-0.9, 0.85, 5.5] para um usuário frustrado.
+ 
 	•	Simule e ajuste: Use a ferramenta para simular mudanças emocionais e gerar respostas adaptativas, como “O que posso fazer?” com tom ajustado.
+ 
 	•	Registre e valide: Salve logs em JSON/CSV e valide com métricas como o Número de Reynolds Emocional (Re_e).
 Dados de Entrada
 Você precisa de:
 	•	Um vetor inicial [c, iota, tau] (ex.: [-0.9, 0.85, 5.5]).
+ 
 	•	Parâmetros externos (ex.: [0.1, 0.2] para contexto).
+ 
 	•	Uma função de dinâmica (ex.: decaimento linear).
+ 
 	•	Contexto do usuário (texto ou voz, como “Já tentei isso mil vezes!”).
+ 
 	•	Parâmetros como Lc=2.0, nu_e=1.0, ree_critical=2100.0.
 Resultados Esperados
+
 	•	Estado atualizado: Um novo vetor, como [-0.85, 0.80, 5.51].
+ 
 	•	Classificação emocional: “Laminar”, “Transição” ou “Turbulento”, baseado em Re_e (ex.: 11.30 para Laminar).
+ 
 	•	Respostas adaptativas: Exemplo, para Laminar: “O que posso fazer?”, para Turbulento: “Entendo que está sendo desafiador. Vamos tentar uma abordagem mais simples: O que posso fazer?”.
+ 
 	•	Logs: Histórico em JSON/CSV para análise futura.
+ 
 	•	Validação: Confirma se Re_e está dentro de limites esperados (2100 ± 150).
 
 Nota Detalhada
