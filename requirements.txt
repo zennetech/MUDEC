@@ -1,0 +1,5 @@
+# requirements.txt - Dependências básicas do MDEI
+
+numpy          # Cálculo vetorial
+matplotlib     # Visualizações futuras e gráficos de simulação
+jupyterlab     # Ambiente interativo para notebooks e simulações
