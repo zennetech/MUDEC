@@ -1,52 +1,59 @@
-# 🧠 MDEI - Modelo de Dinâmica de Estados Internos
+# 🧠 MDEI – Modelo de Dinâmica de Estados Internos
 
-**Repositório oficial do MDEI**, uma arquitetura computacional criada por **Tiago Aguioncio Vieira** para representar e simular estados cognitivo-afetivos em Inteligência Artificial, usando vetores tridimensionais, cálculo diferencial e dinâmicas emocionais inspiradas na física de fluidos.
-
-> Desenvolvido por ZENNE Tecnologia · 2025
+> Uma nova arquitetura vetorial cognitivo-afetiva aplicada à Inteligência Artificial.
 
 ---
 
-## 📌 Visão Geral
+## 📘 Sobre o projeto
 
-O MDEI modela emoções como vetores no espaço tridimensional (c, ι, τ), onde:
-- `c` → componente conceitual (cognitiva);
-- `ι` (iota) → intensidade emocional (normalizada);
-- `τ` (tau) → duração temporal.
+O **MDEI (Modelo de Dinâmica de Estados Internos)** é uma proposta inovadora de runtime emocional baseado em vetores tridimensionais que representam estados afetivos ao longo do tempo. Ele aplica conceitos de:
 
-Com isso, é possível calcular o **Número de Reynolds Emocional (Reₑ)** e classificar o estado como:
-- Laminar
-- Transição
-- Turbulento
+- 💡 Cálculo vetorial e diferencial
+- 🔬 Modelos psicofisiológicos
+- 🌀 Turbulência emocional (Reynolds Emocional)
+- ⚙️ Integração com LLMs (Large Language Models)
 
-Tudo isso permite que **modelos LLM** (como GPT, Gemini ou Claude) ajustem o tom e o estilo de resposta com base no estado emocional da interação.
+O projeto é voltado à criação de IAs que sejam capazes de interpretar sentimentos humanos de forma computacionalmente robusta e semântico-afetiva.
 
 ---
 
-## ⚙️ Funcionalidades
+## 🗂 Estrutura do repositório
 
-- 🧮 Vetorização emocional e cálculo de norma
-- 🔁 Simulação dinâmica com EDOs (Euler/Runge-Kutta)
-- 📉 Número de Reynolds Emocional (Reₑ)
-- 🧠 Camada MDEILayer adaptativa para LLMs
-- 🧯 Fallback emocional com tom controlado
-- 🧾 Log em JSON com estados emocionais em tempo real
+- `📁 GUIA/` — Contém os **códigos-fonte e algoritmos** principais do MDEI.
+- `📄 Artigo_final_Modelos_...` — Versão completa do artigo científico em PDF.
+- `📄 LICENSE` — Licença Creative Commons (Conteúdo não pode ser usado comercialmente).
+- `📄 README.md` — Este arquivo.
 
 ---
 
-## 🚀 Exemplos de Aplicação
+## 📌 Aplicações práticas
 
-- 🤖 Assistentes com empatia adaptativa
-- 💬 Chatbots afetivos (telemedicina, suporte, educação)
-- 🧘 Plataformas de autocuidado emocional
-- 🧑‍🏫 Educação personalizada por estado afetivo
-- 🤝 Interação Homem-Máquina sensível ao estado interno
+- 🤖 Chatbots com resposta afetiva adaptativa
+- 🏥 Psicologia computacional e apoio em saúde mental
+- 🎓 Sistemas de ensino com feedback emocional
+- 🧬 Modelos de simulação para estados cognitivos em IA
 
 ---
 
-## 🧪 Exemplo rápido (main.py)
+## 🧠 Licença
 
-```python
-from mdei_state import MDEIState
+Este projeto está licenciado sob a **Creative Commons BY–NC 4.0**.  
+Você pode **compartilhar, adaptar e remixar**, desde que **dê os devidos créditos** e **não use para fins comerciais**.
 
-state = MDEIState(c=-0.8, iota=0.9, tau=5.0)
-print("Estado inicial:", state.get_state())
+🔗 [Leia a licença completa](https://creativecommons.org/licenses/by-nc/4.0/)  
+© ZENNE Tecnologia — Tiago Aguioncio Vieira
+
+---
+
+## ✍️ Autor
+
+**Tiago Aguioncio Vieira**  
+Graduando em Engenharia Mecânica (FMU) • CEO da [ZENNE Tecnologia](https://zennetech.com)  
+Contato: `tiago@zennetech.com`  
+LinkedIn:[(https://www.linkedin.com/in/tiagovieirapcm/)
+
+---
+
+## ⭐ Colabore
+
+Se você é pesquisador, psicólogo, engenheiro de IA ou investidor e deseja participar desta jornada pioneira, entre em contato. A ZENNE está construindo a próxima geração de Inteligência Artificial com base emocional real.
