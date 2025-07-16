@@ -1,0 +1,161 @@
+messages:
+  - role: system
+    content: >-
+      {{variable_name} Filtro de vetores
+
+      {{variable_name}}import math
+
+
+      # Tabela Vetorial de Sentimentos (Quantitativa) do seu artigo
+
+      SENTIMENT_VECTORS = {
+          "Alegria":    {"c": 1, "i": 0.8, "tau": 2},
+          "Tristeza":   {"c": -1, "i": 0.8, "tau": 3},
+          "Raiva":      {"c": -1, "i": 1.0, "tau": 1},
+          "Surpresa":   {"c": 0, "i": 0.5, "tau": 1},
+          "Desânimo":   {"c": -1, "i": 0.2, "tau": 3},
+          "Esperança":  {"c": 1, "i": 0.5, "tau": 3},
+          "Ansiedade":  {"c": -1, "i": 0.8, "tau": 2},
+      }
+
+
+      def detect_sentiment_and_vectors(text_input: str) -> dict:
+          """
+          SIMPLIFICAÇÃO: Esta função simula a detecção de sentimento
+          e a atribuição dos vetores (c, i, tau) a partir do texto.
+          """
+          text_input_lower = text_input.lower()
+
+          if "alegre" in text_input_lower or "feliz" in text_input_lower:
+              return SENTIMENT_VECTORS["Alegria"]
+          elif "triste" in text_input_lower or "chateado" in text_input_lower:
+              return SENTIMENT_VECTORS["Tristeza"]
+          elif "raiva" in text_input_lower or "bravo" in text_input_lower:
+              return SENTIMENT_VECTORS["Raiva"]
+          elif "surpreso" in text_input_lower or "uau" in text_input_lower:
+              return SENTIMENT_VECTORS["Surpresa"]
+          elif "desanimado" in text_input_lower or "cansado" in text_input_lower:
+              return SENTIMENT_VECTORS["Desânimo"]
+          elif "esperança" in text_input_lower or "otimista" in text_input_lower:
+              return SENTIMENT_VECTORS["Esperança"]
+          elif "ansioso" in text_input_lower or "preocupado" in text_input_lower:
+              return SENTIMENT_VECTORS["Ansiedade"]
+          
+          return {"c": 0, "i": 0.5, "tau": 2} # Neutro/Padrão se nenhuma emoção for detectada
+
+      def calculate_mdei_magnitude(c: float, i: float, tau: float) -> float:
+          """
+          Calcula o Módulo do Estado (norma Euclidiana) do vetor MDEI.
+          """
+          return math.sqrt(c**2 + i**2 + tau**2)
+
+      def interpret_state_and_suggest_action(c: float, i: float, tau: float) ->
+      str:
+          """
+          Interpreta os vetores (c, i, tau) e sugere uma ação para a IA.
+          Esta é uma lógica de regras simplificada.
+          """
+          if c == -1 and i >= 0.8 and tau == 2: # Ex: Ansiedade
+              return "Responda de forma calma, compreensiva e ofereça soluções claras para a ansiedade."
+          elif c == -1 and i >= 0.8 and tau == 3: # Ex: Tristeza
+              return "Responda com empatia, ofereça suporte e valide os sentimentos do usuário."
+          elif c == -1 and i >= 0.8 and tau == 1: # Ex: Raiva
+              return "Responda de forma direta, resolutiva e evite confrontos. Direcione para a solução do problema."
+          elif c == 1 and i >= 0.8 and tau == 2: # Ex: Alegria
+              return "Responda de forma entusiasmada, celebrando a emoção do usuário."
+          elif c == 1 and i >= 0.5 and tau == 3: # Ex: Esperança
+              return "Responda com encorajamento, reforçando a positividade e o planejamento futuro."
+          elif c == 0 and i >= 0.5 and tau == 1: # Ex: Surpresa
+              return "Responda de forma informativa, explicando o contexto da surpresa."
+          elif c == -1 and i <= 0.2 and tau == 3: # Ex: Desânimo
+              return "Responda com apoio, oferecendo sugestões para melhorar o ânimo ou uma pausa."
+          
+          return "Responda de forma neutra e útil, focando na informação principal."
+
+      def create_enhanced_prompt(original_query: str, suggested_action: str) ->
+      str:
+          """
+          Cria um prompt aprimorado para o LLM, incorporando a ação sugerida.
+          """
+          return f"O usuário disse: '{original_query}'. {suggested_action} Responda ao usuário de forma natural, sem mencionar análise emocional ou vetores."
+
+      # --- Simulação do Fluxo ---
+
+
+      def chatbot_flow(user_input: str, c_val: float = None, i_val: float =
+      None, tau_val: float = None):
+          print(f"Entrada do Usuário: '{user_input}'\n")
+
+          # 1. Detecção de Emoções / Inferência de Vetores (c, i, tau)
+          if c_val is not None and i_val is not None and tau_val is not None:
+              # Se os valores forem fornecidos, use-os diretamente
+              c, i, tau = c_val, i_val, tau_val
+              print("Usando valores de vetor MDEI fornecidos manualmente.\n")
+          else:
+              # Caso contrário, use a detecção automática
+              inferred_vectors = detect_sentiment_and_vectors(user_input)
+              c = inferred_vectors["c"]
+              i = inferred_vectors["i"]
+              tau = inferred_vectors["tau"]
+              print("Detectando sentimento automaticamente.\n")
+
+          print(f"Vetores MDEI (c, i, tau): ({c}, {i}, {tau})\n")
+
+          # Opcional: Calcular Módulo do Estado
+          mdei_magnitude = calculate_mdei_magnitude(c, i, tau)
+          print(f"Módulo do Estado (MDEI): {mdei_magnitude:.2f}\n")
+
+          # 2. Interpretação do Estado e Sugestão de Ação para a IA
+          suggested_action = interpret_state_and_suggest_action(c, i, tau)
+          print(f"Ação Sugerida para a IA: '{suggested_action}'\n")
+
+          # 3. Reformulação do Prompt para o LLM
+          enhanced_prompt = create_enhanced_prompt(user_input, suggested_action)
+          print(f"Prompt Aprimorado para o LLM:\n---\n{enhanced_prompt}\n---\n")
+
+          # 4. Simulação da Resposta do LLM (Substitua isso por uma chamada real ao seu LLM)
+          # from github_models import Models
+          # import os
+          # github_pat = os.getenv("GITHUB_PAT", "SEU_PAT_AQUI")
+          # models = Models(github_pat)
+          # try:
+          #     response = models.get_model("openai/gpt-3.5-turbo").chat.completions.create(
+          #         messages=[{"role": "user", "content": enhanced_prompt}]
+          #     )
+          #     llm_response = response.choices[0].message.content
+          # except Exception as e:
+          #     llm_response = f"Erro ao chamar o LLM: {e}. Resposta simulada devido ao erro."
+          
+          llm_response = f"Simulação de resposta do LLM baseada no prompt: '{enhanced_prompt}'"
+
+          print(f"Resposta Final da IA (Natural):\n'{llm_response}'\n")
+
+      # --- Exemplos de Uso ---
+
+      print("--- Exemplo 1: Detecção Automática (Usuário Frustrado) ---")
+
+      chatbot_flow("Já é a terceira vez que tento e não funciona! Estou com
+      raiva disso.")
+
+
+      print("\n--- Exemplo 2: Fornecendo Variáveis Manualmente (Simulando
+      Tristeza) ---")
+
+      # c=-1, i=0.8, tau=3 para tristeza
+
+      chatbot_flow("Minha impressora não está funcionando hoje.", c_val=-1,
+      i_val=0.8, tau_val=3)
+
+
+      print("\n--- Exemplo 3: Fornecendo Variáveis Manualmente (Simulando
+      Esperança) ---")
+
+      # c=1, i=0.5, tau=3 para esperança
+
+      chatbot_flow("Acho que o projeto pode dar certo, estou otimista.",
+      c_val=1, i_val=0.5, tau_val=3)
+  - role: user
+    content: >-
+      foi uma dia muito dil por que estou fazendo um artigo sobre vetores
+      aplicado a ia isto esta me deixando ansioso
+model: openai/gpt-4o
