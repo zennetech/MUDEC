@@ -155,7 +155,5 @@ messages:
       chatbot_flow("Acho que o projeto pode dar certo, estou otimista.",
       c_val=1, i_val=0.5, tau_val=3)
   - role: user
-    content: >-
-      foi uma dia muito dil por que estou fazendo um artigo sobre vetores
-      aplicado a ia isto esta me deixando ansioso
-model: openai/gpt-4o
+    content: querp
+model: openai/gpt-4.1
